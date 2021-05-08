@@ -1,18 +1,35 @@
-Your key: <b>{{key}}</b><br /><br />
-<div>
-  <mat-form-field appearance="fill">
-    <mat-label>Select payment plan</mat-label>
-    <mat-select [(value)]="selectedPlan">
-      <mat-option value="MONTH_PAY">Monthly Pay</mat-option>
-      <mat-option value="YEAR_PAY">Year Pay</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <!-- <div>You selected: {{selectedPlan}}</div> -->
-</div>
-<div>
-  <button mat-flat-button color="primary" (click)="payNow($event)">
-    <mat-icon>payment</mat-icon> Pay
+<mat-card class="card">
+  <!-- Heading -->
+  <mat-card-title class="centertext" style="color: blue;">
+    <h4>License Purchasing</h4>
+  </mat-card-title>
+  <mat-card-content>
+    <!-- Input begin -->
+    <form [formGroup]="inputForm">
+      <mat-form-field [style.width.px]=320>
+        <mat-icon>vpn_key</mat-icon>    
+        <input matInput placeholder="Please enter your key" id="Key" formControlName="Key"/>
+      </mat-form-field>
+    </form>
+    <!-- Input end -->
+    <!-- Error Output begin -->
+    <div *ngIf="error">
+      <div style="color: red;">{{ error }}</div>
+      <br/>
+    </div>
+    <!-- Error Output end -->
+    <!-- Payment Plan Select begin -->
+    <mat-form-field appearance="fill" [style.width.px]=320>
+      <mat-label>Select payment plan</mat-label>
+      <mat-select [(value)]="selectedPlan">
+        <mat-option value="RSPRO-12month">Month Pay Plan</mat-option>
+        <mat-option value="RSPRO-Trial">Trial Plan</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- Payment Plan Select end -->
+  </mat-card-content>
+  <br/>
+  <button mat-flat-button color="primary" (click)="payNow($event)" title="Launch Payment Form">
+    <mat-icon>payment</mat-icon> Pay Now
   </button>
-</div>
-<br />
-<div *ngIf="submitted">{{result}} {{selectedPlan}}</div>
+</mat-card>
