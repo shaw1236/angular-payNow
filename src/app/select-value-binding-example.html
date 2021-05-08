@@ -1,0 +1,18 @@
+Your key: <b>{{key}}</b><br /><br />
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Select payment plan</mat-label>
+    <mat-select [(value)]="selectedPlan">
+      <mat-option value="MONTH_PAY">Monthly Pay</mat-option>
+      <mat-option value="YEAR_PAY">Year Pay</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!-- <div>You selected: {{selectedPlan}}</div> -->
+</div>
+<div>
+  <button mat-flat-button color="primary" (click)="payNow($event)">
+    <mat-icon>payment</mat-icon> Pay
+  </button>
+</div>
+<br />
+<div *ngIf="submitted">{{result}} {{selectedPlan}}</div>
